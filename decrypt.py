@@ -37,9 +37,9 @@ def main():
    
     decryptor = AES.new(c.keyStore.key, AES.MODE_CBC, IV=c.keyStore.iv)
 
-    with open(args.input) as infile:
+    with open(args.input, 'rb') as infile:
         with open(args.output, 'wb') as outfile:
-            filesize = struct.unpack('<Q', infile.read(struct.calcsize('q')))[0]
+            filesize = struct.unpack('<Q', infile.read(struct.calcsize('Q')))[0]
             while True:
                 buff = infile.read(args.buffsize)
                 l = len(buff)

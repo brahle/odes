@@ -38,7 +38,7 @@ def main():
     encryptor = AES.new(c.keyStore.key, AES.MODE_CBC, IV=c.keyStore.iv)
     filesize = os.path.getsize(args.input)
 
-    with open(args.input) as infile:
+    with open(args.input, 'rb') as infile:
         with open(args.output, 'wb') as outfile:
             outfile.write(struct.pack('<Q', filesize))
             while True:
@@ -46,7 +46,8 @@ def main():
                 l = len(buff)
                 if l == 0:
                     break
-                buff += 'B' * (16 - l % 16)
+                if l % 16 != 0:
+                    buff += 'B' * (16 - l % 16)
                 outfile.write(encryptor.encrypt(buff))
 
 if __name__ == '__main__':
