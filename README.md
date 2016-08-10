@@ -1,6 +1,6 @@
 # ODES
 
-A simple encryptor and decryptor script that uses pycrypto.
+A simple encryptor and decryptor script that uses pycrypto's implementation of AES-256 to encrypt/decrpyt files.
 
 ## Inspiration
 
